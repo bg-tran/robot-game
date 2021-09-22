@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tran.billy.games.robot.navigation.PositionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-09-22T05:11:07" hostname="Billys-Mac-mini" time="0.03">
+  <properties/>
+  <testcase name="testToString()" classname="tran.billy.games.robot.navigation.PositionTest" time="0.001"/>
+  <testcase name="testHashCode()" classname="tran.billy.games.robot.navigation.PositionTest" time="0.012"/>
+  <testcase name="testEquals()" classname="tran.billy.games.robot.navigation.PositionTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

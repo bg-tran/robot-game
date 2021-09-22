@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tran.billy.games.robot.character.SimpleRobotTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-09-22T05:11:07" hostname="Billys-Mac-mini" time="0.111">
+  <properties/>
+  <testcase name="report()" classname="tran.billy.games.robot.character.SimpleRobotTest" time="0.06"/>
+  <testcase name="turnRight()" classname="tran.billy.games.robot.character.SimpleRobotTest" time="0.018"/>
+  <testcase name="move()" classname="tran.billy.games.robot.character.SimpleRobotTest" time="0.006"/>
+  <testcase name="place()" classname="tran.billy.games.robot.character.SimpleRobotTest" time="0.004"/>
+  <testcase name="turnLeft()" classname="tran.billy.games.robot.character.SimpleRobotTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
