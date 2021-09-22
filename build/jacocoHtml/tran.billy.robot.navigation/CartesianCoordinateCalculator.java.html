@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CartesianCoordinateCalculator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">robot-game</a> &gt; <a href="index.source.html" class="el_package">tran.billy.robot.navigation</a> &gt; <span class="el_source">CartesianCoordinateCalculator.java</span></div><h1>CartesianCoordinateCalculator.java</h1><pre class="source lang-java linenums">package tran.billy.robot.navigation;
+
+<span class="fc" id="L3">public class CartesianCoordinateCalculator implements CoordinateCalculator{</span>
+
+    public static final int UNIT_PER_MOVEMENT = 1;
+
+    private static CoordinateCalculator calculator;
+
+    @Override
+    public Position nextCoordinates(Direction direction, Position position) {
+
+<span class="fc bfc" id="L12" title="All 4 branches covered.">        if (direction == null || position == null){</span>
+<span class="fc" id="L13">            return null;</span>
+        }
+
+<span class="fc bfc" id="L16" title="All 5 branches covered.">        switch (direction) {</span>
+            case EAST:
+<span class="fc" id="L18">                return new Position(position.getCol() + UNIT_PER_MOVEMENT , position.getRow());</span>
+
+            case WEST:
+<span class="fc" id="L21">                return new Position(position.getCol() - UNIT_PER_MOVEMENT , position.getRow());</span>
+
+            case NORTH:
+<span class="fc" id="L24">                return new Position(position.getCol(), position.getRow() + UNIT_PER_MOVEMENT);</span>
+
+            case SOUTH:
+<span class="fc" id="L27">                return new Position(position.getCol(), position.getRow() - UNIT_PER_MOVEMENT);</span>
+
+            default:
+<span class="fc" id="L30">                return new Position(position.getCol(), position.getRow());</span>
+        }
+    }
+
+    public static CoordinateCalculator getCoordinateCalculator(){
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (calculator == null) {</span>
+<span class="fc" id="L37">            calculator = new CartesianCoordinateCalculator();</span>
+        }
+<span class="fc" id="L39">        return calculator;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

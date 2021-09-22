@@ -5,6 +5,11 @@ plugins {
     id 'distribution'
 }
 
+application {
+    mainClass = 'tran.billy.robot.games.RobotGame'
+    applicationName = 'robot-game'
+}
+
 jacoco {
     toolVersion = "0.8.7"
 //    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
