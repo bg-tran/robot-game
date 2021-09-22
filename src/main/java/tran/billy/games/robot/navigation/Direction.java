@@ -3,6 +3,10 @@ package tran.billy.games.robot.navigation;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Direction for navigating the robot around the surface
+ *
+ */
 public enum Direction {
 
     NORTH("NORTH"), WEST("WEST"), SOUTH("SOUTH"), EAST("EAST"), UNDEFINED("UNDEFINED");

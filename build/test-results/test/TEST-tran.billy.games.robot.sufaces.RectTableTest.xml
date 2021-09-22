@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tran.billy.games.robot.sufaces.RectTableTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-09-22T05:11:07" hostname="Billys-Mac-mini" time="0.112">
+<testsuite name="tran.billy.games.robot.sufaces.RectTableTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-09-22T06:13:25" hostname="Billys-Mac-mini" time="0.005">
   <properties/>
-  <testcase name="isPositionAvailable_Invalid_Position()" classname="tran.billy.games.robot.sufaces.RectTableTest" time="0.102"/>
-  <testcase name="isPositionAvailable_Valid_Position()" classname="tran.billy.games.robot.sufaces.RectTableTest" time="0.004"/>
+  <testcase name="isPositionAvailable_Invalid_Position()" classname="tran.billy.games.robot.sufaces.RectTableTest" time="0.002"/>
+  <testcase name="isPositionAvailable_Valid_Position()" classname="tran.billy.games.robot.sufaces.RectTableTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

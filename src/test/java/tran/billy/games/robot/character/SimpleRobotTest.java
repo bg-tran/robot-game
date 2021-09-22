@@ -90,13 +90,21 @@ class SimpleRobotTest {
 
     @Test
     void report() {
-
         Assertions.assertEquals("Robot @ [(3,3), NORTH]", robot.report(),"Robot is placed at (3,3), NORTH");
+
         robot.place(new Position(3,4), Direction.findByName("EAST"));
         Assertions.assertEquals("Robot @ [(3,4), EAST]", robot.report(),"Robot is placed at (3,4), EAST");
+
         robot.place(new Position(1,4), Direction.findByName("WEST"));
         Assertions.assertEquals("Robot @ [(1,4), WEST]", robot.report(),"Robot is placed at (1,4), WEST");
+
         robot.place(new Position(3,1), Direction.findByName("SOUTH"));
         Assertions.assertEquals("Robot @ [(3,1), SOUTH]", robot.report(),"Robot is placed at (3,1), SOUTH");
+
+        robot = new SimpleRobot(null);
+        Assertions.assertNull(robot.report(),"Robot should be placed on a surface before reporting");
+
+        robot = new SimpleRobot(new RectTable(5,5));
+        Assertions.assertNull(robot.report(),"Robot should be placed on a surface before reporting");
     }
 }

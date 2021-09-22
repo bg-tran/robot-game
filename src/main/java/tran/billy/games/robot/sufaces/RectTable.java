@@ -2,6 +2,10 @@ package tran.billy.games.robot.sufaces;
 
 import tran.billy.games.robot.navigation.Position;
 
+/**
+ * An implementation of the rectangle surface to place the robot on
+ *
+ */
 public class RectTable implements Surface{
     private int columnNo;
     private int rowNo;

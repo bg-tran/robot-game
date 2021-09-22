@@ -5,15 +5,24 @@ import tran.billy.games.robot.navigation.Direction;
 import tran.billy.games.robot.navigation.Position;
 import tran.billy.games.robot.sufaces.Surface;
 
+/**
+ *  An implementation of Robot
+ */
 public class SimpleRobot implements Robot {
 
     private Position position;
     private Direction direction;
     private final Surface surface;
 
+    /**
+     *  Constructor
+     *  @param targetSurface a surface for this robot to be placed on
+     *  @return robot instance
+     */
     public SimpleRobot(Surface targetSurface){
         this.surface = targetSurface;
     }
+
     @Override
     public boolean place(Position position, Direction direction) {
 
@@ -73,6 +82,9 @@ public class SimpleRobot implements Robot {
 
     @Override
     public String report() {
+        if (this.surface == null || this.position == null) {
+            return null;
+        }
         return "Robot @ [" + this.position + ", " + this.direction + "]";
     }
 }

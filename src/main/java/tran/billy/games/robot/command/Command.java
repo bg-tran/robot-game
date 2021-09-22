@@ -4,7 +4,9 @@ import tran.billy.games.robot.character.Robot;
 import tran.billy.games.robot.navigation.Direction;
 import tran.billy.games.robot.navigation.Position;
 
-
+/**
+ * A command interface to control the robot using Command design pattern
+ */
 @FunctionalInterface
 public interface Command {
 
@@ -16,7 +18,7 @@ public interface Command {
         if(cmd == null || cmd.trim().equals("")) {
             return VOID_COMMAND;
         }
-        String[] cmdTokens = cmd.split(" ");
+        String[] cmdTokens = cmd.toUpperCase().split(" ");
 
         switch(cmdTokens[0]) {
             case "PLACE":

@@ -2,6 +2,10 @@ package tran.billy.games.robot.navigation;
 
 import java.util.HashMap;
 
+/**
+ * A navigator to help the robot finding its direction
+ * as well as calculating its new position before moving forward
+ */
 public class Navigator {
 
     private static Navigator navigator;
@@ -21,15 +25,30 @@ public class Navigator {
         put(Direction.EAST,Direction.NORTH);
     }};
 
-
+    /**
+     * Calculate the new direction if the robot turns left from its current direction
+     * @param direction current direction
+     * @return new direction
+     */
     public Direction rotateLeft(Direction direction){
         return counterClockwise.get(direction);
     }
 
+    /**
+     * Calculate the new direction if the robot turns right from its current direction
+     * @param direction current direction
+     * @return new direction
+     */
     public Direction rotateRight(Direction direction){
         return clockwise.get(direction);
     }
 
+    /**
+     * Calculate the new position if the robot moves forward from its current position
+     * @param direction current direction
+     * @param position current position
+     * @return new position
+     */
     public Position move(Direction direction, Position position, int steps){
 
         if (direction == null || position == null){
@@ -53,6 +72,10 @@ public class Navigator {
         }
     }
 
+    /**
+     * Create a singleton of Navigator class
+     * @return a cached navigator
+     */
     public static Navigator getNavigator(){
 
         if (navigator == null) {
