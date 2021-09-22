@@ -1,4 +1,4 @@
-package tran.billy.games.robot.main;
+package tran.billy.games.robot.games;
 
 public class RobotGame {
 
