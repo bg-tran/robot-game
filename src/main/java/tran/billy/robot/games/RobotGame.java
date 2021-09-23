@@ -1,9 +1,23 @@
 package tran.billy.robot.games;
 
+import tran.billy.robot.controller.RobotController;
+import tran.billy.robot.machinery.Robot;
+import tran.billy.robot.machinery.SimpleRobot;
+import tran.billy.robot.navigation.CartesianCoordinateCalculator;
+import tran.billy.robot.navigation.SimpleNavigator;
+import tran.billy.robot.surfaces.RectTable;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+
+import java.util.Scanner;
+
 public class RobotGame {
 
+    static final String QUIT_CMD = "quit";
 
     private final String[] args;
+    private Robot robot;
 
     public RobotGame(String[] args) {
 
@@ -21,32 +35,63 @@ public class RobotGame {
         System.out.println("LEFT - to rotate the robot 90 degrees counterclockwise while staying at same position");
         System.out.println("RIGHT - to rotate the robot 90 degrees clockwise while staying at same position");
         System.out.println("REPORT - to report current position and  direction");
+        System.out.println("** Commands are case-insensitive");
 
         System.out.println("\nYou can also play the game in non-interactive mode: ");
         System.out.println("sh robot-game --command-file <command file>");
-        System.out.println("\nPress enter to continue or 'quit' to exit");
+        System.out.println("\nType a command to control the robot or 'quit' to exit");
     }
 
     private boolean isNonInteractiveMode(String[] args){
-        return args != null && args.length > 0;
+        return args.length > 0;
     }
 
     private void interactiveMode(){
-        System.out.println("Interactive mode");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        while (!QUIT_CMD.equalsIgnoreCase(input)) {
+            System.out.println(RobotController.getCommand(input).executeCommand(robot));
+
+            input = scanner.nextLine();
+        }
+        System.out.println("Exiting ...");
+        scanner.close();
     }
 
-    private void nonInteractiveMode(){
-        System.out.println("Non-interactive mode");
+    private void nonInteractiveMode() throws FileNotFoundException {
+
+        Scanner scanner = new Scanner(new File(args[0]));
+        String inputCmd;
+        while (scanner.hasNextLine()) {
+            inputCmd = scanner.nextLine();
+            System.out.println(inputCmd);
+            System.out.println(RobotController.getCommand(inputCmd).executeCommand(robot));
+        }
+
+        scanner.close();
+    }
+
+    private void initialiseGame(){
+        robot = new SimpleRobot(new RectTable(5,5),
+                SimpleNavigator.getNavigator(),
+                CartesianCoordinateCalculator.getCoordinateCalculator());
     }
 
     public void run(){
 
-        if (!isNonInteractiveMode(this.args)){
-            printHelp();
-            interactiveMode();
+        initialiseGame();
+
+        if (isNonInteractiveMode(this.args)){
+            try {
+                nonInteractiveMode();
+            } catch (FileNotFoundException e) {
+                System.out.println("Invalid input file");
+            }
         }
         else {
-            nonInteractiveMode();
+            printHelp();
+            interactiveMode();
+
         }
 
     }

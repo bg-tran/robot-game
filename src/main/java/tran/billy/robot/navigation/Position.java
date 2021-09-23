@@ -19,6 +19,16 @@ public class Position {
         this.row = row;
     }
 
+    public static Position getPosition(String col, String row){
+
+        try {
+            return new Position(Integer.parseInt(col.trim()),Integer.parseInt(row.trim()));
+
+        }catch (NumberFormatException | NullPointerException e){
+            return null;
+        }
+    }
+
     @Override
     public String toString() {
         return "(" +col + "," + row + ")";

@@ -10,9 +10,9 @@ import tran.billy.robot.navigation.Position;
 @FunctionalInterface
 public interface RobotController {
 
-    RobotController VOID_COMMAND = (robot) -> {};
+    RobotController VOID_COMMAND = (robot) -> new CommandStatus("Invalid command");
 
-    void executeCommand(Robot robot);
+    CommandStatus executeCommand(Robot robot);
 
     static RobotController getCommand(String cmd) {
         if(cmd == null || cmd.trim().equals("")) {
@@ -26,7 +26,10 @@ public interface RobotController {
                     return VOID_COMMAND;
                 }
                 String[] paramTokens = cmdTokens[1].split(",");
-                final Position position = new Position(Integer.parseInt(paramTokens[0]),Integer.parseInt(paramTokens[0]));
+                if (paramTokens.length != 3){
+                    return VOID_COMMAND;
+                }
+                final Position position = Position.getPosition(paramTokens[0],paramTokens[1]);
                 final Direction direction = Direction.findByName(paramTokens[2]);
                 return robot ->  robot.place(position,direction);
             case "MOVE":

@@ -14,6 +14,16 @@ class PositionTest {
     }
 
     @Test
+    void testGetPosition() {
+
+        Assertions.assertEquals(p, Position.getPosition("10","7"));
+        Assertions.assertNull(Position.getPosition("foo","7"));
+        Assertions.assertNull(Position.getPosition("foo","bar"));
+        Assertions.assertNull(Position.getPosition("10","bar"));
+        Assertions.assertNull(Position.getPosition(null,"bar"));
+    }
+
+    @Test
     void testEquals() {
 
         Assertions.assertTrue(p.equals(p));
