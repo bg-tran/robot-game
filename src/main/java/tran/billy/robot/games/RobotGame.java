@@ -36,9 +36,6 @@ public class RobotGame {
         System.out.println("RIGHT - to rotate the robot 90 degrees clockwise while staying at same position");
         System.out.println("REPORT - to report current position and  direction");
         System.out.println("** Commands are case-insensitive");
-
-        System.out.println("\nYou can also play the game in non-interactive mode: ");
-        System.out.println("sh robot-game --command-file <command file>");
         System.out.println("\nType a command to control the robot or 'quit' to exit");
     }
 
