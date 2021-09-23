@@ -1,7 +1,5 @@
 package tran.billy.robot.machinery;
 
-import tran.billy.robot.controller.CoordinatesCalculatorController;
-import tran.billy.robot.controller.NavigatorController;
 import tran.billy.robot.navigation.CoordinateCalculator;
 import tran.billy.robot.navigation.Navigator;
 import tran.billy.robot.navigation.Direction;
@@ -15,33 +13,72 @@ public class SimpleRobot implements Robot {
 
     private Position position;
     private Direction direction;
-    private final Surface surface;
-    private final Navigator navigator;
-    private final CoordinateCalculator calculator;
+    private Surface surface;
+    private Navigator navigator;
+    private CoordinateCalculator calculator;
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public Surface getSurface() {
+        return surface;
+    }
+
+    public Navigator getNavigator() {
+        return navigator;
+    }
+
+    public CoordinateCalculator getCalculator() {
+        return calculator;
+    }
+
+    public void setSurface(Surface surface) {
+        this.surface = surface;
+    }
+
+    public void setNavigator(Navigator navigator) {
+        this.navigator = navigator;
+    }
+
+    public void setCalculator(CoordinateCalculator calculator) {
+        this.calculator = calculator;
+    }
 
     /**
      *  Constructor
      *  @param targetSurface a surface for this robot to be placed on
      */
     public SimpleRobot(Surface targetSurface, Navigator navigator, CoordinateCalculator calculator){
-        this.surface = targetSurface;
-        this.navigator = navigator;
-        this.calculator = calculator;
+        setSurface(targetSurface);
+        setNavigator(navigator);
+        setCalculator(calculator);
     }
 
     @Override
     public boolean place(Position position, Direction direction) {
 
-        if (surface == null
-                || !surface.isPositionAvailable(position)
+        if (getSurface() == null
+                || !getSurface().isPositionAvailable(position)
                 || direction == null
                 || Direction.UNDEFINED.equals((direction))){
             return false;
         }
 
-        this.position = position;
-        this.direction = direction;
+        setPosition(position);
+        setDirection(direction);
 
         return true;
     }
@@ -49,46 +86,44 @@ public class SimpleRobot implements Robot {
     @Override
     public Direction turnLeft() {
 
-        Direction newDirection = NavigatorController.navigateLeft(this.direction).use(this.navigator);
-
+        Direction newDirection = getNavigator().rotateLeft(getDirection());
         if (newDirection != null){
-            this.direction = newDirection;
+            setDirection(newDirection);
         }
 
-        return this.direction;
+        return getDirection();
     }
 
     @Override
     public Direction turnRight() {
 
-        Direction newDirection = NavigatorController.navigateRight(this.direction).use(this.navigator);
+        Direction newDirection = getNavigator().rotateRight(getDirection());
         if (newDirection != null){
-            this.direction = newDirection;
+            setDirection(newDirection);
         }
 
-        return this.direction;
+        return getDirection();
 
     }
 
     @Override
     public Position move() {
 
-        if (this.surface == null || this.position == null) {
+        if (getSurface() == null || getPosition() == null) {
             return null;
         }
 
-        Position newPosition = CoordinatesCalculatorController.getNextCoordinates(this.position, this.direction).use(this.calculator);
-
-        if (surface.isPositionAvailable(newPosition)){
-            this.position = newPosition;
+        Position newPosition = getCalculator().nextCoordinates(getDirection(),getPosition());
+        if (getSurface().isPositionAvailable(newPosition)){
+            setPosition(newPosition);
         }
 
-        return this.position;
+        return getPosition();
     }
 
     @Override
     public String report() {
-        if (this.surface == null || this.position == null) {
+        if (getSurface() == null || getPosition() == null) {
             return null;
         }
         return "Robot @ [" + this.position + ", " + this.direction + "]";
