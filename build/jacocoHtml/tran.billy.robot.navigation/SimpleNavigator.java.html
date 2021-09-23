@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleNavigator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">robot-game</a> &gt; <a href="index.source.html" class="el_package">tran.billy.robot.navigation</a> &gt; <span class="el_source">SimpleNavigator.java</span></div><h1>SimpleNavigator.java</h1><pre class="source lang-java linenums">package tran.billy.robot.navigation;
+
+import java.util.HashMap;
+
+/**
+ * A navigator to help the robot finding its direction
+ * as well as calculating its new position before moving forward
+ */
+<span class="fc" id="L9">public class SimpleNavigator implements Navigator {</span>
+
+    private static Navigator navigator;
+
+<span class="fc" id="L13">    private final HashMap&lt;Direction,Direction&gt; clockwise = new HashMap&lt;Direction,Direction&gt;() {{</span>
+<span class="fc" id="L14">        put(Direction.NORTH,Direction.EAST);</span>
+<span class="fc" id="L15">        put(Direction.EAST,Direction.SOUTH);</span>
+<span class="fc" id="L16">        put(Direction.SOUTH,Direction.WEST);</span>
+<span class="fc" id="L17">        put(Direction.WEST,Direction.NORTH);</span>
+<span class="fc" id="L18">    }};</span>
+<span class="fc" id="L19">    private final HashMap&lt;Direction,Direction&gt; counterClockwise = new HashMap&lt;Direction,Direction&gt;() {{</span>
+<span class="fc" id="L20">        put(Direction.NORTH,Direction.WEST);</span>
+<span class="fc" id="L21">        put(Direction.WEST,Direction.SOUTH);</span>
+<span class="fc" id="L22">        put(Direction.SOUTH,Direction.EAST);</span>
+<span class="fc" id="L23">        put(Direction.EAST,Direction.NORTH);</span>
+<span class="fc" id="L24">    }};</span>
+
+    /**
+     * Calculate the new direction if the robot turns left from its current direction
+     * @param direction current direction
+     * @return new direction
+     */
+    @Override
+    public Direction rotateLeft(Direction direction){
+<span class="fc" id="L33">        return counterClockwise.get(direction);</span>
+    }
+
+    /**
+     * Calculate the new direction if the robot turns right from its current direction
+     * @param direction current direction
+     * @return new direction
+     */
+    @Override
+    public Direction rotateRight(Direction direction){
+<span class="fc" id="L43">        return clockwise.get(direction);</span>
+    }
+
+
+    /**
+     * Create a singleton of Navigator class
+     * @return a cached navigator
+     */
+    public static Navigator getNavigator(){
+
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (navigator == null) {</span>
+<span class="fc" id="L54">            navigator = new SimpleNavigator();</span>
+        }
+
+<span class="fc" id="L57">        return navigator;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

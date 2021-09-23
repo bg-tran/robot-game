@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RectTable.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">robot-game</a> &gt; <a href="index.source.html" class="el_package">tran.billy.games.robot.sufaces</a> &gt; <span class="el_source">RectTable.java</span></div><h1>RectTable.java</h1><pre class="source lang-java linenums">package tran.billy.games.robot.sufaces;
+
+import tran.billy.games.robot.navigation.Position;
+
+public class RectTable implements Surface{
+    private int columnNo;
+    private int rowNo;
+
+<span class="fc" id="L9">    public RectTable(int column, int row){</span>
+<span class="fc" id="L10">        columnNo = column;</span>
+<span class="fc" id="L11">        rowNo = row;</span>
+<span class="fc" id="L12">    }</span>
+
+    @Override
+    public boolean isPositionAvailable(Position position) {
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        return position != null</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">                &amp;&amp; (position.getCol() + 1) * (position.getCol() - this.columnNo) &lt; 0</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">                &amp;&amp; (position.getRow() + 1) * (position.getRow() - this.rowNo) &lt; 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

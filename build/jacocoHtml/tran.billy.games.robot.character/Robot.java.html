@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Robot.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">robot-game</a> &gt; <a href="index.source.html" class="el_package">tran.billy.games.robot.character</a> &gt; <span class="el_source">Robot.java</span></div><h1>Robot.java</h1><pre class="source lang-java linenums">package tran.billy.games.robot.character;
+
+import tran.billy.games.robot.navigation.Navigator;
+import tran.billy.games.robot.navigation.Direction;
+import tran.billy.games.robot.navigation.Position;
+import tran.billy.games.robot.sufaces.Surface;
+
+public class Robot implements IRobot{
+
+    private Position position;
+    private Direction direction;
+    private Surface surface;
+
+<span class="fc" id="L14">    public Robot(Surface targetSurface){</span>
+<span class="fc" id="L15">        this.surface = targetSurface;</span>
+<span class="fc" id="L16">    }</span>
+    @Override
+    public boolean place(Position position, Direction direction) {
+
+<span class="pc bpc" id="L20" title="1 of 6 branches missed.">        if (surface == null || !surface.isPositionAvailable(position) || direction == null){</span>
+<span class="fc" id="L21">            return false;</span>
+        }
+
+<span class="fc" id="L24">        this.position = position;</span>
+<span class="fc" id="L25">        this.direction = direction;</span>
+
+<span class="fc" id="L27">        return true;</span>
+    }
+
+    @Override
+    public Direction turnLeft() {
+
+<span class="fc" id="L33">        Direction newDirection = Navigator.getNavigator().rotateLeft(this.direction);</span>
+
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (newDirection != null){</span>
+<span class="fc" id="L36">            this.direction = newDirection;</span>
+        }
+
+<span class="fc" id="L39">        return this.direction;</span>
+    }
+
+    @Override
+    public Direction turnRight() {
+
+<span class="fc" id="L45">        Direction newDirection = Navigator.getNavigator().rotateRight(this.direction);</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (newDirection != null){</span>
+<span class="fc" id="L48">            this.direction = newDirection;</span>
+        }
+
+<span class="fc" id="L51">        return this.direction;</span>
+
+    }
+
+    @Override
+    public Position move() {
+
+<span class="pc bpc" id="L58" title="4 of 8 branches missed.">        if ( this.direction == null || Direction.UNDEFINED.equals(this.direction) || this.surface == null || this.position == null) {</span>
+<span class="nc" id="L59">            return null;</span>
+        }
+
+<span class="fc" id="L62">        Position newPosition = Navigator.getNavigator().move(this.direction, this.position, Navigator.STEP_PER_MOVEMENT);</span>
+
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (surface.isPositionAvailable(newPosition)){</span>
+<span class="fc" id="L65">            this.position = newPosition;</span>
+        }
+
+<span class="fc" id="L68">        return this.position;</span>
+    }
+
+    @Override
+    public String report() {
+<span class="fc" id="L73">        return &quot;Robot @ [&quot; + this.position + &quot;, &quot; + this.direction + &quot;]&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

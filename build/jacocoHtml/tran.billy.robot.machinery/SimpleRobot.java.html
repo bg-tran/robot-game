@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleRobot.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">robot-game</a> &gt; <a href="index.source.html" class="el_package">tran.billy.robot.machinery</a> &gt; <span class="el_source">SimpleRobot.java</span></div><h1>SimpleRobot.java</h1><pre class="source lang-java linenums">package tran.billy.robot.machinery;
+
+import tran.billy.robot.controller.CoordinatesCalculatorController;
+import tran.billy.robot.controller.NavigatorController;
+import tran.billy.robot.navigation.CoordinateCalculator;
+import tran.billy.robot.navigation.Navigator;
+import tran.billy.robot.navigation.Direction;
+import tran.billy.robot.navigation.Position;
+import tran.billy.robot.surfaces.Surface;
+
+/**
+ *  An implementation of Robot
+ */
+public class SimpleRobot implements Robot {
+
+    private Position position;
+    private Direction direction;
+    private final Surface surface;
+    private final Navigator navigator;
+    private final CoordinateCalculator calculator;
+
+
+    /**
+     *  Constructor
+     *  @param targetSurface a surface for this robot to be placed on
+     */
+<span class="fc" id="L27">    public SimpleRobot(Surface targetSurface, Navigator navigator, CoordinateCalculator calculator){</span>
+<span class="fc" id="L28">        this.surface = targetSurface;</span>
+<span class="fc" id="L29">        this.navigator = navigator;</span>
+<span class="fc" id="L30">        this.calculator = calculator;</span>
+<span class="fc" id="L31">    }</span>
+
+    @Override
+    public boolean place(Position position, Direction direction) {
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (surface == null</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">                || !surface.isPositionAvailable(position)</span>
+                || direction == null
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                || Direction.UNDEFINED.equals((direction))){</span>
+<span class="fc" id="L40">            return false;</span>
+        }
+
+<span class="fc" id="L43">        this.position = position;</span>
+<span class="fc" id="L44">        this.direction = direction;</span>
+
+<span class="fc" id="L46">        return true;</span>
+    }
+
+    @Override
+    public Direction turnLeft() {
+
+<span class="fc" id="L52">        Direction newDirection = NavigatorController.navigateLeft(this.direction).use(this.navigator);</span>
+
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (newDirection != null){</span>
+<span class="fc" id="L55">            this.direction = newDirection;</span>
+        }
+
+<span class="fc" id="L58">        return this.direction;</span>
+    }
+
+    @Override
+    public Direction turnRight() {
+
+<span class="fc" id="L64">        Direction newDirection = NavigatorController.navigateRight(this.direction).use(this.navigator);</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (newDirection != null){</span>
+<span class="fc" id="L66">            this.direction = newDirection;</span>
+        }
+
+<span class="fc" id="L69">        return this.direction;</span>
+
+    }
+
+    @Override
+    public Position move() {
+
+<span class="fc bfc" id="L76" title="All 4 branches covered.">        if (this.surface == null || this.position == null) {</span>
+<span class="fc" id="L77">            return null;</span>
+        }
+
+<span class="fc" id="L80">        Position newPosition = CoordinatesCalculatorController.getNextCoordinates(this.position, this.direction).use(this.calculator);</span>
+
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (surface.isPositionAvailable(newPosition)){</span>
+<span class="fc" id="L83">            this.position = newPosition;</span>
+        }
+
+<span class="fc" id="L86">        return this.position;</span>
+    }
+
+    @Override
+    public String report() {
+<span class="fc bfc" id="L91" title="All 4 branches covered.">        if (this.surface == null || this.position == null) {</span>
+<span class="fc" id="L92">            return null;</span>
+        }
+<span class="fc" id="L94">        return &quot;Robot @ [&quot; + this.position + &quot;, &quot; + this.direction + &quot;]&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
