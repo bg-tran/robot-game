@@ -10,35 +10,38 @@ import tran.billy.robot.navigation.Position;
 @FunctionalInterface
 public interface RobotController {
 
-<span class="nc" id="L13">    RobotController VOID_COMMAND = (robot) -&gt; {};</span>
+<span class="fc" id="L13">    RobotController VOID_COMMAND = (robot) -&gt; new CommandStatus(&quot;Invalid command&quot;);</span>
 
-    void executeCommand(Robot robot);
+    CommandStatus executeCommand(Robot robot);
 
     static RobotController getCommand(String cmd) {
-<span class="nc bnc" id="L18" title="All 4 branches missed.">        if(cmd == null || cmd.trim().equals(&quot;&quot;)) {</span>
-<span class="nc" id="L19">            return VOID_COMMAND;</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if(cmd.isEmpty()) {</span>
+<span class="fc" id="L19">            return VOID_COMMAND;</span>
         }
-<span class="nc" id="L21">        String[] cmdTokens = cmd.toUpperCase().split(&quot; &quot;);</span>
+<span class="fc" id="L21">        String[] cmdTokens = cmd.toUpperCase().split(&quot; &quot;);</span>
 
-<span class="nc bnc" id="L23" title="All 6 branches missed.">        switch(cmdTokens[0]) {</span>
+<span class="fc bfc" id="L23" title="All 6 branches covered.">        switch(cmdTokens[0]) {</span>
             case &quot;PLACE&quot;:
-<span class="nc bnc" id="L25" title="All 2 branches missed.">                if (cmdTokens.length == 1){</span>
-<span class="nc" id="L26">                    return VOID_COMMAND;</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">                if (cmdTokens.length == 1){</span>
+<span class="fc" id="L26">                    return VOID_COMMAND;</span>
                 }
-<span class="nc" id="L28">                String[] paramTokens = cmdTokens[1].split(&quot;,&quot;);</span>
-<span class="nc" id="L29">                final Position position = new Position(Integer.parseInt(paramTokens[0]),Integer.parseInt(paramTokens[0]));</span>
-<span class="nc" id="L30">                final Direction direction = Direction.findByName(paramTokens[2]);</span>
-<span class="nc" id="L31">                return robot -&gt;  robot.place(position,direction);</span>
+<span class="fc" id="L28">                String[] paramTokens = cmdTokens[1].split(&quot;,&quot;);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">                if (paramTokens.length != 3){</span>
+<span class="fc" id="L30">                    return VOID_COMMAND;</span>
+                }
+<span class="fc" id="L32">                final Position position = Position.getPosition(paramTokens[0],paramTokens[1]);</span>
+<span class="fc" id="L33">                final Direction direction = Direction.findByName(paramTokens[2]);</span>
+<span class="fc" id="L34">                return robot -&gt;  robot.place(position,direction);</span>
             case &quot;MOVE&quot;:
-<span class="nc" id="L33">                return Robot::move;</span>
+<span class="fc" id="L36">                return Robot::move;</span>
             case &quot;LEFT&quot;:
-<span class="nc" id="L35">                return Robot::turnLeft;</span>
+<span class="fc" id="L38">                return Robot::turnLeft;</span>
             case &quot;RIGHT&quot;:
-<span class="nc" id="L37">                return Robot::turnRight;</span>
+<span class="fc" id="L40">                return Robot::turnRight;</span>
             case &quot;REPORT&quot;:
-<span class="nc" id="L39">                return Robot::report;</span>
+<span class="fc" id="L42">                return Robot::report;</span>
             default:
-<span class="nc" id="L41">                return VOID_COMMAND;</span>
+<span class="fc" id="L44">                return VOID_COMMAND;</span>
         }
 
     }

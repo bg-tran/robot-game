@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tran.billy.robot.machinery.SimpleRobotTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-09-22T23:22:02" hostname="Billys-Mac-mini" time="0.072">
+<testsuite name="tran.billy.robot.machinery.SimpleRobotTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-09-24T03:54:45" hostname="Billys-Mac-mini.local" time="0.035">
   <properties/>
-  <testcase name="report()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.009"/>
-  <testcase name="turnRight()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.009"/>
-  <testcase name="move()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.012"/>
+  <testcase name="move_NORTH()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.001"/>
+  <testcase name="move_SOUTH()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.001"/>
+  <testcase name="report()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.001"/>
+  <testcase name="turnRight()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.002"/>
   <testcase name="place()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.002"/>
-  <testcase name="turnLeft()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.007"/>
+  <testcase name="turnLeft()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.002"/>
+  <testcase name="move_EAST()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.001"/>
+  <testcase name="move_WEST()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.002"/>
+  <testcase name="move_Invalid_Movement()" classname="tran.billy.robot.machinery.SimpleRobotTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

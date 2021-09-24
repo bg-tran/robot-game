@@ -1,5 +1,6 @@
 package tran.billy.robot.machinery;
 
+import tran.billy.robot.controller.CommandStatus;
 import tran.billy.robot.navigation.CoordinateCalculator;
 import tran.billy.robot.navigation.Navigator;
 import tran.billy.robot.navigation.Direction;
@@ -68,49 +69,49 @@ public class SimpleRobot implements Robot {
     }
 
     @Override
-    public boolean place(Position position, Direction direction) {
+    public CommandStatus place(Position position, Direction direction) {
 
         if (getSurface() == null
                 || !getSurface().isPositionAvailable(position)
                 || direction == null
                 || Direction.UNDEFINED.equals((direction))){
-            return false;
+            return new CommandStatus(Boolean.FALSE);
         }
 
         setPosition(position);
         setDirection(direction);
 
-        return true;
+        return new CommandStatus((Boolean.TRUE));
     }
 
     @Override
-    public Direction turnLeft() {
+    public CommandStatus turnLeft() {
 
         Direction newDirection = getNavigator().rotateLeft(getDirection());
         if (newDirection != null){
             setDirection(newDirection);
         }
 
-        return getDirection();
+        return new CommandStatus(getDirection());
     }
 
     @Override
-    public Direction turnRight() {
+    public CommandStatus turnRight() {
 
         Direction newDirection = getNavigator().rotateRight(getDirection());
         if (newDirection != null){
             setDirection(newDirection);
         }
 
-        return getDirection();
+        return new CommandStatus(getDirection());
 
     }
 
     @Override
-    public Position move() {
+    public CommandStatus move() {
 
         if (getSurface() == null || getPosition() == null) {
-            return null;
+            return new CommandStatus(null);
         }
 
         Position newPosition = getCalculator().nextCoordinates(getDirection(),getPosition());
@@ -118,11 +119,16 @@ public class SimpleRobot implements Robot {
             setPosition(newPosition);
         }
 
-        return getPosition();
+        return new CommandStatus(getPosition());
     }
 
     @Override
-    public String report() {
+    public CommandStatus report() {
+        return new CommandStatus(toString());
+    }
+
+    @Override
+    public String toString(){
         if (getSurface() == null || getPosition() == null) {
             return null;
         }

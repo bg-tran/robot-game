@@ -1,5 +1,6 @@
 package tran.billy.robot.machinery;
 
+import tran.billy.robot.controller.CommandStatus;
 import tran.billy.robot.navigation.Direction;
 import tran.billy.robot.navigation.Position;
 
@@ -10,29 +11,29 @@ public interface Robot {
      * @param direction the intending direction
      * @return true if success
      */
-    boolean place(Position position, Direction direction);
+    CommandStatus place(Position position, Direction direction);
 
     /**
      * Turn this robot counterclockwise 90 degrees from current direction
      * @return new direction if success
      */
-    Direction turnLeft();
+    CommandStatus turnLeft();
 
     /**
      * Turn this robot clockwise 90 degrees from current direction
      * @return new direction if success
      */
-    Direction turnRight();
+    CommandStatus turnRight();
 
     /**
      * Move this robot forward
      * @return new position if success
      */
-    Position move();
+    CommandStatus move();
 
     /**
      * Report current position and direction
      * @return current position and direction in string format if success
      */
-    String report();
+    CommandStatus report();
 }

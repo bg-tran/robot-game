@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SimpleRobot.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">robot-game</a> &gt; <a href="index.source.html" class="el_package">tran.billy.robot.machinery</a> &gt; <span class="el_source">SimpleRobot.java</span></div><h1>SimpleRobot.java</h1><pre class="source lang-java linenums">package tran.billy.robot.machinery;
 
-import tran.billy.robot.controller.CoordinatesCalculatorController;
-import tran.billy.robot.controller.NavigatorController;
+import tran.billy.robot.controller.CommandStatus;
 import tran.billy.robot.navigation.CoordinateCalculator;
 import tran.billy.robot.navigation.Navigator;
 import tran.billy.robot.navigation.Direction;
@@ -15,83 +14,125 @@ public class SimpleRobot implements Robot {
 
     private Position position;
     private Direction direction;
-    private final Surface surface;
-    private final Navigator navigator;
-    private final CoordinateCalculator calculator;
+    private Surface surface;
+    private Navigator navigator;
+    private CoordinateCalculator calculator;
 
+    public Position getPosition() {
+<span class="fc" id="L22">        return position;</span>
+    }
+
+    public void setPosition(Position position) {
+<span class="fc" id="L26">        this.position = position;</span>
+<span class="fc" id="L27">    }</span>
+
+    public Direction getDirection() {
+<span class="fc" id="L30">        return direction;</span>
+    }
+
+    public void setDirection(Direction direction) {
+<span class="fc" id="L34">        this.direction = direction;</span>
+<span class="fc" id="L35">    }</span>
+
+    public Surface getSurface() {
+<span class="fc" id="L38">        return surface;</span>
+    }
+
+    public Navigator getNavigator() {
+<span class="fc" id="L42">        return navigator;</span>
+    }
+
+    public CoordinateCalculator getCalculator() {
+<span class="fc" id="L46">        return calculator;</span>
+    }
+
+    public void setSurface(Surface surface) {
+<span class="fc" id="L50">        this.surface = surface;</span>
+<span class="fc" id="L51">    }</span>
+
+    public void setNavigator(Navigator navigator) {
+<span class="fc" id="L54">        this.navigator = navigator;</span>
+<span class="fc" id="L55">    }</span>
+
+    public void setCalculator(CoordinateCalculator calculator) {
+<span class="fc" id="L58">        this.calculator = calculator;</span>
+<span class="fc" id="L59">    }</span>
 
     /**
      *  Constructor
      *  @param targetSurface a surface for this robot to be placed on
      */
-<span class="fc" id="L27">    public SimpleRobot(Surface targetSurface, Navigator navigator, CoordinateCalculator calculator){</span>
-<span class="fc" id="L28">        this.surface = targetSurface;</span>
-<span class="fc" id="L29">        this.navigator = navigator;</span>
-<span class="fc" id="L30">        this.calculator = calculator;</span>
-<span class="fc" id="L31">    }</span>
+<span class="fc" id="L65">    public SimpleRobot(Surface targetSurface, Navigator navigator, CoordinateCalculator calculator){</span>
+<span class="fc" id="L66">        setSurface(targetSurface);</span>
+<span class="fc" id="L67">        setNavigator(navigator);</span>
+<span class="fc" id="L68">        setCalculator(calculator);</span>
+<span class="fc" id="L69">    }</span>
 
     @Override
-    public boolean place(Position position, Direction direction) {
+    public CommandStatus place(Position position, Direction direction) {
 
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (surface == null</span>
-<span class="fc bfc" id="L37" title="All 4 branches covered.">                || !surface.isPositionAvailable(position)</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (getSurface() == null</span>
+<span class="fc bfc" id="L75" title="All 4 branches covered.">                || !getSurface().isPositionAvailable(position)</span>
                 || direction == null
-<span class="fc bfc" id="L39" title="All 2 branches covered.">                || Direction.UNDEFINED.equals((direction))){</span>
-<span class="fc" id="L40">            return false;</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">                || Direction.UNDEFINED.equals((direction))){</span>
+<span class="fc" id="L78">            return new CommandStatus(Boolean.FALSE);</span>
         }
 
-<span class="fc" id="L43">        this.position = position;</span>
-<span class="fc" id="L44">        this.direction = direction;</span>
+<span class="fc" id="L81">        setPosition(position);</span>
+<span class="fc" id="L82">        setDirection(direction);</span>
 
-<span class="fc" id="L46">        return true;</span>
+<span class="fc" id="L84">        return new CommandStatus((Boolean.TRUE));</span>
     }
 
     @Override
-    public Direction turnLeft() {
+    public CommandStatus turnLeft() {
 
-<span class="fc" id="L52">        Direction newDirection = NavigatorController.navigateLeft(this.direction).use(this.navigator);</span>
-
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (newDirection != null){</span>
-<span class="fc" id="L55">            this.direction = newDirection;</span>
+<span class="fc" id="L90">        Direction newDirection = getNavigator().rotateLeft(getDirection());</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (newDirection != null){</span>
+<span class="fc" id="L92">            setDirection(newDirection);</span>
         }
 
-<span class="fc" id="L58">        return this.direction;</span>
+<span class="fc" id="L95">        return new CommandStatus(getDirection());</span>
     }
 
     @Override
-    public Direction turnRight() {
+    public CommandStatus turnRight() {
 
-<span class="fc" id="L64">        Direction newDirection = NavigatorController.navigateRight(this.direction).use(this.navigator);</span>
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (newDirection != null){</span>
-<span class="fc" id="L66">            this.direction = newDirection;</span>
+<span class="fc" id="L101">        Direction newDirection = getNavigator().rotateRight(getDirection());</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (newDirection != null){</span>
+<span class="fc" id="L103">            setDirection(newDirection);</span>
         }
 
-<span class="fc" id="L69">        return this.direction;</span>
+<span class="fc" id="L106">        return new CommandStatus(getDirection());</span>
 
     }
 
     @Override
-    public Position move() {
+    public CommandStatus move() {
 
-<span class="fc bfc" id="L76" title="All 4 branches covered.">        if (this.surface == null || this.position == null) {</span>
-<span class="fc" id="L77">            return null;</span>
+<span class="fc bfc" id="L113" title="All 4 branches covered.">        if (getSurface() == null || getPosition() == null) {</span>
+<span class="fc" id="L114">            return new CommandStatus(null);</span>
         }
 
-<span class="fc" id="L80">        Position newPosition = CoordinatesCalculatorController.getNextCoordinates(this.position, this.direction).use(this.calculator);</span>
-
-<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (surface.isPositionAvailable(newPosition)){</span>
-<span class="fc" id="L83">            this.position = newPosition;</span>
+<span class="fc" id="L117">        Position newPosition = getCalculator().nextCoordinates(getDirection(),getPosition());</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (getSurface().isPositionAvailable(newPosition)){</span>
+<span class="fc" id="L119">            setPosition(newPosition);</span>
         }
 
-<span class="fc" id="L86">        return this.position;</span>
+<span class="fc" id="L122">        return new CommandStatus(getPosition());</span>
     }
 
     @Override
-    public String report() {
-<span class="fc bfc" id="L91" title="All 4 branches covered.">        if (this.surface == null || this.position == null) {</span>
-<span class="fc" id="L92">            return null;</span>
+    public CommandStatus report() {
+<span class="fc" id="L127">        return new CommandStatus(toString());</span>
+    }
+
+    @Override
+    public String toString(){
+<span class="fc bfc" id="L132" title="All 4 branches covered.">        if (getSurface() == null || getPosition() == null) {</span>
+<span class="fc" id="L133">            return null;</span>
         }
-<span class="fc" id="L94">        return &quot;Robot @ [&quot; + this.position + &quot;, &quot; + this.direction + &quot;]&quot;;</span>
+<span class="fc" id="L135">        return &quot;Robot @ [&quot; + this.position + &quot;, &quot; + this.direction + &quot;]&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
