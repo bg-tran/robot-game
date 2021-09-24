@@ -167,7 +167,7 @@ $./gradlew clean build
 $./gradlew test
 ```
 ### Unit Test reports
-- [build/test-results/test](build/test-results/test)
+- [build/reports/tests/test/index.html](build/reports/tests/test/index.html)
 
 ### Test coverage reports
 - [build/jacocoHtml/index.html](build/jacocoHtml/index.html)
