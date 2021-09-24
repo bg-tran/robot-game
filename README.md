@@ -27,10 +27,10 @@ If there is a need to change navigating logic, we can implement another navigato
 1. It is not required to provide any graphical output showing the movement of the toy robot.
 2. Robot targets a square table top of dimensions 5 units x 5 units. 
 3. The origin (0,0) can be considered to be the SOUTH WEST most corner.
-4. There are obstruction on the table surface.
+4. There are no obstruction on the table surface.
 
 ## Project structure
-- [src/main/java/tran/billy/robot](./src/main/java/tran/billy/robot) - Source code
+- [src/main/java/tran/billy/robot](./src/main/java/tran/billy/robot) 
   - [controller](./src/main/java/tran/billy/robot/controller) - code for command interface to interpret input into robot's instruction 
   - [games](./src/main/java/tran/billy/robot/games) - code for main app/game
   - [machinery](./src/main/java/tran/billy/robot/machinery) - code for Robot interface and implementation
