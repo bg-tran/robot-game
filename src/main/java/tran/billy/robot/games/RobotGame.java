@@ -1,5 +1,7 @@
 package tran.billy.robot.games;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tran.billy.robot.controller.RobotController;
 import tran.billy.robot.machinery.Robot;
 import tran.billy.robot.machinery.SimpleRobot;
@@ -13,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class RobotGame {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RobotGame.class);
 
     static final String QUIT_CMD = "quit";
 
@@ -61,8 +65,8 @@ public class RobotGame {
         String inputCmd;
         while (scanner.hasNextLine()) {
             inputCmd = scanner.nextLine();
-            System.out.println(inputCmd);
-            System.out.println(RobotController.getCommand(inputCmd).executeCommand(robot));
+            LOGGER.info(inputCmd);
+            LOGGER.info(RobotController.getCommand(inputCmd).executeCommand(robot).toString());
         }
 
         scanner.close();
@@ -82,7 +86,7 @@ public class RobotGame {
             try {
                 nonInteractiveMode();
             } catch (FileNotFoundException e) {
-                System.out.println("Invalid input file");
+                LOGGER.error("Invalid input file");
             }
         }
         else {

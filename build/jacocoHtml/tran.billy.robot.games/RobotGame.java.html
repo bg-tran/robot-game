@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RobotGame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">robot-game</a> &gt; <a href="index.source.html" class="el_package">tran.billy.robot.games</a> &gt; <span class="el_source">RobotGame.java</span></div><h1>RobotGame.java</h1><pre class="source lang-java linenums">package tran.billy.robot.games;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tran.billy.robot.controller.RobotController;
 import tran.billy.robot.machinery.Robot;
 import tran.billy.robot.machinery.SimpleRobot;
@@ -14,93 +16,92 @@ import java.util.Scanner;
 
 public class RobotGame {
 
+<span class="fc" id="L19">    private static final Logger LOGGER = LoggerFactory.getLogger(RobotGame.class);</span>
+
     static final String QUIT_CMD = &quot;quit&quot;;
 
     private final String[] args;
     private Robot robot;
 
-<span class="fc" id="L22">    public RobotGame(String[] args) {</span>
+<span class="fc" id="L26">    public RobotGame(String[] args) {</span>
 
-<span class="fc" id="L24">        this.args = args;</span>
-<span class="fc" id="L25">    }</span>
+<span class="fc" id="L28">        this.args = args;</span>
+<span class="fc" id="L29">    }</span>
 
     private void printHelp(){
-<span class="fc" id="L28">        System.out.println(&quot;Welcome the robot game's interactive mode&quot;);</span>
-<span class="fc" id="L29">        System.out.println(&quot;A robot has been initialized and ready to placed onto a 5x5 unit table&quot;);</span>
-<span class="fc" id="L30">        System.out.println(&quot;\nYou must start the game with PLACE X,Y,F command to place the robot on the table at (0&lt;= X &lt; 5 , 0&lt;= Y &lt; 5) position&quot;);</span>
-<span class="fc" id="L31">        System.out.println(&quot;facing direction F (F could be NORTH, EAST, SOUTH or WEST)&quot;);</span>
-<span class="fc" id="L32">        System.out.println(&quot;PLACE command could be issued any time to reset the robot to specific position and direction&quot;);</span>
-<span class="fc" id="L33">        System.out.println(&quot;\nSubsequent commands could be issued only if the robot is placed successfully or they will be ignored:&quot;);</span>
-<span class="fc" id="L34">        System.out.println(&quot;MOVE - to move forward 1 unit while facing the same direction&quot;);</span>
-<span class="fc" id="L35">        System.out.println(&quot;LEFT - to rotate the robot 90 degrees counterclockwise while staying at same position&quot;);</span>
-<span class="fc" id="L36">        System.out.println(&quot;RIGHT - to rotate the robot 90 degrees clockwise while staying at same position&quot;);</span>
-<span class="fc" id="L37">        System.out.println(&quot;REPORT - to report current position and  direction&quot;);</span>
-<span class="fc" id="L38">        System.out.println(&quot;** Commands are case-insensitive&quot;);</span>
-
-<span class="fc" id="L40">        System.out.println(&quot;\nYou can also play the game in non-interactive mode: &quot;);</span>
-<span class="fc" id="L41">        System.out.println(&quot;sh robot-game --command-file &lt;command file&gt;&quot;);</span>
-<span class="fc" id="L42">        System.out.println(&quot;\nType a command to control the robot or 'quit' to exit&quot;);</span>
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L32">        System.out.println(&quot;Welcome the robot game's interactive mode&quot;);</span>
+<span class="fc" id="L33">        System.out.println(&quot;A robot has been initialized and ready to placed onto a 5x5 unit table&quot;);</span>
+<span class="fc" id="L34">        System.out.println(&quot;\nYou must start the game with PLACE X,Y,F command to place the robot on the table at (0&lt;= X &lt; 5 , 0&lt;= Y &lt; 5) position&quot;);</span>
+<span class="fc" id="L35">        System.out.println(&quot;facing direction F (F could be NORTH, EAST, SOUTH or WEST)&quot;);</span>
+<span class="fc" id="L36">        System.out.println(&quot;PLACE command could be issued any time to reset the robot to specific position and direction&quot;);</span>
+<span class="fc" id="L37">        System.out.println(&quot;\nSubsequent commands could be issued only if the robot is placed successfully or they will be ignored:&quot;);</span>
+<span class="fc" id="L38">        System.out.println(&quot;MOVE - to move forward 1 unit while facing the same direction&quot;);</span>
+<span class="fc" id="L39">        System.out.println(&quot;LEFT - to rotate the robot 90 degrees counterclockwise while staying at same position&quot;);</span>
+<span class="fc" id="L40">        System.out.println(&quot;RIGHT - to rotate the robot 90 degrees clockwise while staying at same position&quot;);</span>
+<span class="fc" id="L41">        System.out.println(&quot;REPORT - to report current position and  direction&quot;);</span>
+<span class="fc" id="L42">        System.out.println(&quot;** Commands are case-insensitive&quot;);</span>
+<span class="fc" id="L43">        System.out.println(&quot;\nType a command to control the robot or 'quit' to exit&quot;);</span>
+<span class="fc" id="L44">    }</span>
 
     private boolean isNonInteractiveMode(String[] args){
-<span class="fc bfc" id="L46" title="All 2 branches covered.">        return args.length &gt; 0;</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        return args.length &gt; 0;</span>
     }
 
     private void interactiveMode(){
-<span class="fc" id="L50">        Scanner scanner = new Scanner(System.in);</span>
-<span class="fc" id="L51">        String input = scanner.nextLine();</span>
-<span class="fc bfc" id="L52" title="All 2 branches covered.">        while (!QUIT_CMD.equalsIgnoreCase(input)) {</span>
-<span class="fc" id="L53">            System.out.println(RobotController.getCommand(input).executeCommand(robot));</span>
+<span class="fc" id="L51">        Scanner scanner = new Scanner(System.in);</span>
+<span class="fc" id="L52">        String input = scanner.nextLine();</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        while (!QUIT_CMD.equalsIgnoreCase(input)) {</span>
+<span class="fc" id="L54">            System.out.println(RobotController.getCommand(input).executeCommand(robot));</span>
 
-<span class="fc" id="L55">            input = scanner.nextLine();</span>
+<span class="fc" id="L56">            input = scanner.nextLine();</span>
         }
-<span class="fc" id="L57">        System.out.println(&quot;Exiting ...&quot;);</span>
-<span class="fc" id="L58">        scanner.close();</span>
-<span class="fc" id="L59">    }</span>
+<span class="fc" id="L58">        System.out.println(&quot;Exiting ...&quot;);</span>
+<span class="fc" id="L59">        scanner.close();</span>
+<span class="fc" id="L60">    }</span>
 
     private void nonInteractiveMode() throws FileNotFoundException {
 
-<span class="fc" id="L63">        Scanner scanner = new Scanner(new File(args[0]));</span>
+<span class="fc" id="L64">        Scanner scanner = new Scanner(new File(args[0]));</span>
         String inputCmd;
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        while (scanner.hasNextLine()) {</span>
-<span class="fc" id="L66">            inputCmd = scanner.nextLine();</span>
-<span class="fc" id="L67">            System.out.println(inputCmd);</span>
-<span class="fc" id="L68">            System.out.println(RobotController.getCommand(inputCmd).executeCommand(robot));</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        while (scanner.hasNextLine()) {</span>
+<span class="fc" id="L67">            inputCmd = scanner.nextLine();</span>
+<span class="fc" id="L68">            LOGGER.info(inputCmd);</span>
+<span class="fc" id="L69">            LOGGER.info(RobotController.getCommand(inputCmd).executeCommand(robot).toString());</span>
         }
 
-<span class="fc" id="L71">        scanner.close();</span>
-<span class="fc" id="L72">    }</span>
+<span class="fc" id="L72">        scanner.close();</span>
+<span class="fc" id="L73">    }</span>
 
     private void initialiseGame(){
-<span class="fc" id="L75">        robot = new SimpleRobot(new RectTable(5,5),</span>
-<span class="fc" id="L76">                SimpleNavigator.getNavigator(),</span>
-<span class="fc" id="L77">                CartesianCoordinateCalculator.getCoordinateCalculator());</span>
-<span class="fc" id="L78">    }</span>
+<span class="fc" id="L76">        robot = new SimpleRobot(new RectTable(5,5),</span>
+<span class="fc" id="L77">                SimpleNavigator.getNavigator(),</span>
+<span class="fc" id="L78">                CartesianCoordinateCalculator.getCoordinateCalculator());</span>
+<span class="fc" id="L79">    }</span>
 
     public void run(){
 
-<span class="fc" id="L82">        initialiseGame();</span>
+<span class="fc" id="L83">        initialiseGame();</span>
 
-<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (isNonInteractiveMode(this.args)){</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (isNonInteractiveMode(this.args)){</span>
             try {
-<span class="fc" id="L86">                nonInteractiveMode();</span>
-<span class="fc" id="L87">            } catch (FileNotFoundException e) {</span>
-<span class="fc" id="L88">                System.out.println(&quot;Invalid input file&quot;);</span>
-<span class="fc" id="L89">            }</span>
+<span class="fc" id="L87">                nonInteractiveMode();</span>
+<span class="fc" id="L88">            } catch (FileNotFoundException e) {</span>
+<span class="fc" id="L89">                LOGGER.error(&quot;Invalid input file&quot;);</span>
+<span class="fc" id="L90">            }</span>
         }
         else {
-<span class="fc" id="L92">            printHelp();</span>
-<span class="fc" id="L93">            interactiveMode();</span>
+<span class="fc" id="L93">            printHelp();</span>
+<span class="fc" id="L94">            interactiveMode();</span>
 
         }
 
-<span class="fc" id="L97">    }</span>
+<span class="fc" id="L98">    }</span>
 
     public static void main(String[] args) {
 
-<span class="fc" id="L101">        RobotGame game = new RobotGame(args);</span>
+<span class="fc" id="L102">        RobotGame game = new RobotGame(args);</span>
 
-<span class="fc" id="L103">        game.run();</span>
-<span class="fc" id="L104">    }</span>
+<span class="fc" id="L104">        game.run();</span>
+<span class="fc" id="L105">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

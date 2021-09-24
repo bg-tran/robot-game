@@ -15,7 +15,7 @@ public interface RobotController {
     CommandStatus executeCommand(Robot robot);
 
     static RobotController getCommand(String cmd) {
-<span class="pc bpc" id="L18" title="1 of 4 branches missed.">        if(cmd == null || cmd.trim().equals(&quot;&quot;)) {</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if(cmd.isEmpty()) {</span>
 <span class="fc" id="L19">            return VOID_COMMAND;</span>
         }
 <span class="fc" id="L21">        String[] cmdTokens = cmd.toUpperCase().split(&quot; &quot;);</span>

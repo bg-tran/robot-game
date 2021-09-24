@@ -50,38 +50,73 @@ class SimpleRobotTest {
     }
 
     @Test
-    void move() {
+    void move_NORTH() {
 
         // moving NORTH
-        Assertions.assertEquals(new CommandStatus(new Position(3,4)), robot.move(), "Robot @ [(3,3), NORTH] should move to (3,4)");
-        Assertions.assertEquals(new CommandStatus(new Position(3,4)), robot.move(), "Robot @ [(3,4), NORTH] should not move outside the surface");
-        robot.place(new Position(0,4), Direction.findByName("NORTH"));
-        Assertions.assertEquals(new CommandStatus(new Position(0,4)), robot.move(), "Robot @ [(0,4), NORTH] should not move outside the surface");
-        robot.place(new Position(4,4), Direction.findByName("NORTH"));
-        Assertions.assertEquals(new CommandStatus(new Position(4,4)), robot.move(), "Robot @ [(4,4), NORTH] should not move outside the surface");
+        Assertions.assertEquals(new CommandStatus(new Position(3, 4)), robot.move(), "Robot @ [(3,3), NORTH] should move to (3,4)");
+        Assertions.assertEquals(new CommandStatus(new Position(3, 4)), robot.move(), "Robot @ [(3,4), NORTH] should not move outside the surface");
 
+        robot.place(new Position(0, 4), Direction.findByName("NORTH"));
+        Assertions.assertEquals(new CommandStatus(new Position(0, 4)), robot.move(), "Robot @ [(0,4), NORTH] should not move outside the surface");
+
+        robot.place(new Position(4, 4), Direction.findByName("NORTH"));
+        Assertions.assertEquals(new CommandStatus(new Position(4, 4)), robot.move(), "Robot @ [(4,4), NORTH] should not move outside the surface");
+    }
+
+    @Test
+    void move_EAST() {
         // moving EAST
-        robot.place(new Position(3,4), Direction.findByName("EAST"));
-        Assertions.assertEquals(new CommandStatus(new Position(4,4)), robot.move(), "Robot @ [(3,4), EAST] should move to (4,4)");
-        Assertions.assertEquals(new CommandStatus(new Position(4,4)), robot.move(), "Robot @ [(4,4), EAST] should not move outside the surface");
-        robot.place(new Position(4,0), Direction.findByName("EAST"));
-        Assertions.assertEquals(new CommandStatus(new Position(4,0)), robot.move(), "Robot @ [(4,0), EAST] should not move outside the surface");
-        robot.place(new Position(4,4), Direction.findByName("EAST"));
-        Assertions.assertEquals(new CommandStatus(new Position(4,4)), robot.move(), "Robot @ [(4,4), EAST] should not move outside the surface");
-        robot.place(new Position(4,0), Direction.findByName("NORTH"));
+        robot.place(new Position(3, 4), Direction.findByName("EAST"));
+        Assertions.assertEquals(new CommandStatus(new Position(4, 4)), robot.move(), "Robot @ [(3,4), EAST] should move to (4,4)");
+        Assertions.assertEquals(new CommandStatus(new Position(4, 4)), robot.move(), "Robot @ [(4,4), EAST] should not move outside the surface");
+
+        robot.place(new Position(4, 0), Direction.findByName("EAST"));
+        Assertions.assertEquals(new CommandStatus(new Position(4, 0)), robot.move(), "Robot @ [(4,0), EAST] should not move outside the surface");
+
+        robot.place(new Position(4, 4), Direction.findByName("EAST"));
+        Assertions.assertEquals(new CommandStatus(new Position(4, 4)), robot.move(), "Robot @ [(4,4), EAST] should not move outside the surface");
+
+        robot.place(new Position(4, 0), Direction.findByName("NORTH"));
         robot.turnRight();
-        Assertions.assertEquals(new CommandStatus(new Position(4,0)), robot.move(), "Robot @ [(4,0), EAST] should not move outside the surface");
+        Assertions.assertEquals(new CommandStatus(new Position(4, 0)), robot.move(), "Robot @ [(4,0), EAST] should not move outside the surface");
+    }
 
+    @Test
+    void move_SOUTH() {
         // moving SOUTH
-        robot.place(new Position(3,1), Direction.findByName("SOUTH"));
-        Assertions.assertEquals(new CommandStatus(new Position(3,0)), robot.move(), "Robot @ [(3,1), SOUTH] should move to (3,0)");
-        Assertions.assertEquals(new CommandStatus(new Position(3,0)), robot.move(), "Robot @ [(3,0), SOUTH] should not move outside the surface");
+        robot.place(new Position(3, 1), Direction.findByName("SOUTH"));
+        Assertions.assertEquals(new CommandStatus(new Position(3, 0)), robot.move(), "Robot @ [(3,1), SOUTH] should move to (3,0)");
+        Assertions.assertEquals(new CommandStatus(new Position(3, 0)), robot.move(), "Robot @ [(3,0), SOUTH] should not move outside the surface");
 
+        robot.place(new Position(4, 0), Direction.findByName("EAST"));
+        robot.turnRight();
+        Assertions.assertEquals(new CommandStatus(new Position(4, 0)), robot.move(), "Robot @ [(4,0), SOUTH] should not move outside the surface");
+
+        robot.place(new Position(4, 0), Direction.findByName("WEST"));
+        robot.turnLeft();
+        Assertions.assertEquals(new CommandStatus(new Position(4, 0)), robot.move(), "Robot @ [(4,0), SOUTH] should not move outside the surface");
+
+    }
+
+    @Test
+    void move_WEST() {
         // moving WEST
-        robot.place(new Position(1,4), Direction.findByName("WEST"));
-        Assertions.assertEquals(new CommandStatus(new Position(0,4)), robot.move(), "Robot @ [(1,4), WEST] should move to (0,4)");
-        Assertions.assertEquals(new CommandStatus(new Position(0,4)), robot.move(), "Robot @ [(0,4), WEST] should not move outside the surface");
+        robot.place(new Position(1, 4), Direction.findByName("WEST"));
+        Assertions.assertEquals(new CommandStatus(new Position(0, 4)), robot.move(), "Robot @ [(1,4), WEST] should move to (0,4)");
+        Assertions.assertEquals(new CommandStatus(new Position(0, 4)), robot.move(), "Robot @ [(0,4), WEST] should not move outside the surface");
 
+        robot.place(new Position(0, 4), Direction.findByName("NORTH"));
+        robot.turnLeft();
+        Assertions.assertEquals(new CommandStatus(new Position(0, 4)), robot.move(), "Robot @ [(0,4), WEST] should not move outside the surface");
+
+        robot.place(new Position(0, 4), Direction.findByName("SOUTH"));
+        robot.turnRight();
+        Assertions.assertEquals(new CommandStatus(new Position(0, 4)), robot.move(), "Robot @ [(0,4), WEST] should not move outside the surface");
+
+    }
+
+    @Test
+    void move_Invalid_Movement() {
         // Invalid movement
         robot = new SimpleRobot(null, null, null);
         Assertions.assertEquals(new CommandStatus(null), robot.move(),"Robot should be placed on a surface before moving");

@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tran.billy.robot.games.RobotGameTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-09-23T13:45:11" hostname="Billys-Mac-mini" time="0.16">
+<testsuite name="tran.billy.robot.games.RobotGameTest" tests="31" skipped="0" failures="0" errors="0" timestamp="2021-09-24T03:54:44" hostname="Billys-Mac-mini.local" time="0.772">
   <properties/>
-  <testcase name="run_NonInteractiveMode()" classname="tran.billy.robot.games.RobotGameTest" time="0.104"/>
-  <testcase name="run_InteractiveMode()" classname="tran.billy.robot.games.RobotGameTest" time="0.053"/>
+  <testcase name="run_NonInteractiveMode_robot_0_0_N_move_to_4_4_E()" classname="tran.billy.robot.games.RobotGameTest" time="0.589"/>
+  <testcase name="run_InteractiveMode_Robot_4_4_W_move_to_0_4_W_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.004"/>
+  <testcase name="run_NonInteractiveMode_robot_0_4_S_move_to_4_0_E()" classname="tran.billy.robot.games.RobotGameTest" time="0.008"/>
+  <testcase name="run_NonInteractiveMode_robot_0_4_S_move_to_0_0_S_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.005"/>
+  <testcase name="run_InteractiveMode_Robot_0_4_E_move_to_4_4_E_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.004"/>
+  <testcase name="run_NonInteractiveMode_robot_0_0_N_move_to_0_4_N_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.007"/>
+  <testcase name="run_InteractiveMode_Valid_PLACE_Cmd_Issued_twice()" classname="tran.billy.robot.games.RobotGameTest" time="0.003"/>
+  <testcase name="run_NonInteractiveMode_robot_4_0_N_move_to_4_4_N_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.008"/>
+  <testcase name="run_InteractiveMode_Robot_0_0_N_move_to_4_4_E()" classname="tran.billy.robot.games.RobotGameTest" time="0.005"/>
+  <testcase name="run_InteractiveMode_Robot_0_4_S_move_to_0_0_S_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.003"/>
+  <testcase name="run_NonInteractiveMode_Invalid_input_file()" classname="tran.billy.robot.games.RobotGameTest" time="0.002"/>
+  <testcase name="run_InteractiveMode_Valid_PLACE_Cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.002"/>
+  <testcase name="run_InteractiveMode_Robot_0_0_N_move_to_0_4_N_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.004"/>
+  <testcase name="run_InteractiveMode_Robot_4_4_S_move_to_4_0_S_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.004"/>
+  <testcase name="run_NonInteractiveMode_robot_4_0_W_move_to_0_4_N()" classname="tran.billy.robot.games.RobotGameTest" time="0.01"/>
+  <testcase name="run_NonInteractiveModerobot_4_4_S_move_to_4_0_S_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.006"/>
+  <testcase name="run_InteractiveMode_Robot_4_0_N_move_to_4_4_N_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.002"/>
+  <testcase name="run_InteractiveMode_Invalid_Cmd_should_be_ignored()" classname="tran.billy.robot.games.RobotGameTest" time="0.005"/>
+  <testcase name="run_NonInteractiveMode_robot_4_0_W_move_to_0_0_W_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.004"/>
+  <testcase name="run_InteractiveMode_Robot_0_0_S_should_not_move_out_of_table()" classname="tran.billy.robot.games.RobotGameTest" time="0.002"/>
+  <testcase name="run_InteractiveMode_Robot_0_0_W_should_not_move_out_of_table()" classname="tran.billy.robot.games.RobotGameTest" time="0.003"/>
+  <testcase name="run_InteractiveMode_Robot_4_4_E_should_not_move_out_of_table()" classname="tran.billy.robot.games.RobotGameTest" time="0.004"/>
+  <testcase name="run_InteractiveMode_Robot_4_4_N_should_not_move_out_of_table()" classname="tran.billy.robot.games.RobotGameTest" time="0.004"/>
+  <testcase name="run_NonInteractiveMode_robot_4_4_W_move_to_0_0_S()" classname="tran.billy.robot.games.RobotGameTest" time="0.011"/>
+  <testcase name="run_NonInteractiveMode_robot_0_0_E_move_to_4_0_E_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.005"/>
+  <testcase name="run_InteractiveMode_Valid_PLACE_MOVE_Cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.002"/>
+  <testcase name="run_NonInteractiveMode_robot_4_4_W_move_to_0_4_W_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.004"/>
+  <testcase name="run_InteractiveMode_Robot_4_0_W_move_to_0_0_W_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.001"/>
+  <testcase name="run_NonInteractiveMode_robot_0_4_E_move_to_4_4_E_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.005"/>
+  <testcase name="run_InteractiveMode_Robot_0_0_E_move_to_4_0_E_ignored_last_MOVE_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.001"/>
+  <testcase name="run_NonInteractiveMode_invalid_cmd()" classname="tran.billy.robot.games.RobotGameTest" time="0.015"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

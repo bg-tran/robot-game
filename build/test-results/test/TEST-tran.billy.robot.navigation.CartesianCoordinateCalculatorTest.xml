@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tran.billy.robot.navigation.CartesianCoordinateCalculatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-09-23T13:45:11" hostname="Billys-Mac-mini" time="0.003">
+<testsuite name="tran.billy.robot.navigation.CartesianCoordinateCalculatorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-09-24T03:54:44" hostname="Billys-Mac-mini.local" time="0.011">
   <properties/>
-  <testcase name="nextCoordinates()" classname="tran.billy.robot.navigation.CartesianCoordinateCalculatorTest" time="0.003"/>
+  <testcase name="nextCoordinates()" classname="tran.billy.robot.navigation.CartesianCoordinateCalculatorTest" time="0.011"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

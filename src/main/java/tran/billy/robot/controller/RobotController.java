@@ -15,7 +15,7 @@ public interface RobotController {
     CommandStatus executeCommand(Robot robot);
 
     static RobotController getCommand(String cmd) {
-        if(cmd == null || cmd.trim().equals("")) {
+        if(cmd.isEmpty()) {
             return VOID_COMMAND;
         }
         String[] cmdTokens = cmd.toUpperCase().split(" ");
