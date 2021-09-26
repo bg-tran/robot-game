@@ -66,9 +66,61 @@ $./gradlew run --console=plain
 ```shell script
 $ "<installation-dir>"/robot-game/bin/robot-game "<path-to-input-file>"
 ```
+
+Example:
+```shell script
+Billys-Mac-mini:bin master$ ./robot-game /Users/master/IdeaProjects/robot-game/src/test/data/robot_invalid_cmd.txt
+
+Invalid command
+FOO
+Invalid command
+PLACE
+Invalid command
+PLACE 0
+Invalid command
+PLACE FOO,BAR
+Invalid command
+PLACE FOO,0,BAR
+false
+PLACE 0,0,FOO,BAR
+Invalid command
+
+Invalid command
+REPORT
+Ignored
+```
+
 - or interactive mode:
 ```shell script
 $ "<installation-dir>"/robot-game/bin/robot-game
+```
+
+Example:
+```shell script
+$ ./robot-game
+Welcome the robot game's interactive mode
+A robot has been initialized and ready to placed onto a 5x5 unit table
+
+You must start the game with PLACE X,Y,F command to place the robot on the table at (0<= X < 5 , 0<= Y < 5) position
+facing direction F (F could be NORTH, EAST, SOUTH or WEST)
+PLACE command could be issued any time to reset the robot to specific position and direction
+
+Subsequent commands could be issued only if the robot is placed successfully or they will be ignored:
+MOVE - to move forward 1 unit while facing the same direction
+LEFT - to rotate the robot 90 degrees counterclockwise while staying at same position
+RIGHT - to rotate the robot 90 degrees clockwise while staying at same position
+REPORT - to report current position and  direction
+** Commands are case-insensitive
+
+Type a command to control the robot or 'quit' to exit
+place 0,0,North 
+true
+move
+(0,1)
+report
+Robot @ [(0,1), NORTH]
+quit
+Exiting ...
 ```
 
 ## Development
