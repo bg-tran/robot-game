@@ -22,7 +22,7 @@ A robot is controlled by a controller which has a set of commands. Individual ro
 
 The SimpleRobot, for instance, uses a navigator and a coordinate calculator to find direction and next position.
 If there is a need to change navigating logic, we can implement another navigator and/or coordinate calculator.
-
+![image](Robot-game-class-diagram.png)
 ### Assumptions
 1. It is not required to provide any graphical output showing the movement of the toy robot.
 2. Robot targets a square table top of dimensions 5 units x 5 units. 
